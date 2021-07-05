@@ -1,0 +1,121 @@
+{% load widget_tweaks %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .header{
+        text-align: center;
+        font-size: 4em;
+        font-family: "Courier New";
+        color: black;
+    }
+</style>
+<head>
+    <style>
+        .content_table{
+            border-collapse: collapse;
+            border-radius: 5px 5px 0 0;
+            margin: 25px 0;
+            margin-top: 75px;
+            margin-left: 480px;
+            font-size: 0.9em;
+            min-width: 400px;
+            overflow: hidden;
+            box-shadow:0 0 20px lightslategray;
+        }
+        .content_table thead tr{
+            background-color: black;
+            color: white;
+            text-align: left;
+            font-family: "Courier New";
+
+        }
+        .content_table td{
+             transition: transform 500ms ease-in-out;
+            will-change: transform;
+
+        }
+        .content_table td:hover{
+             transform: scale(1.5);
+             background-color: transparent;
+        }
+        .content_table th,
+            .content_table td{
+            padding: 12px 15px;
+        }
+
+        .content_table tbody tr:nth-of-type(even){
+            background-color: ivory;
+            color: black;
+        }
+
+        .content_table tbody tr:last-of-type{
+            border-bottom: 2px solid black;
+            border-radius: 20px 20px 20px 20px;
+            overflow: hidden;
+        }
+
+              .button {
+        margin-top: 20px;
+
+  margin-right: 150px;
+  margin-left: 720px;
+            font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+            color: mintcream;
+            transition-duration: 0.4s;
+            background-color: black;
+            border: 2px solid black;
+        border-radius: 12px;
+        padding: 14px 40px;
+        }
+
+    .button:hover {
+    background-color: transparent; /* Green */
+     color: black;
+    }
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Request Book</title>
+</head>
+<body style="background-image: url('{% static "images/request.jpg"%}')">
+<div class="header">
+<p>REQUEST A BOOK</p>
+</div>
+
+<form action="/accounts/request_book_page/" method="post">
+    {% csrf_token %}
+    <table class="content_table">
+    <thead>
+    <tr>
+
+        <th>BOOK ID</th>
+        <th>BOOK NAME</th>
+        <th>PUBLISHER</th>
+        <th>AUTHOR</th>
+        <th>BOOK TYPE</th>
+        <th>PRICE POINTS</th>
+    </tr>
+    </thead>
+    {% for i in books %}
+        <tr>
+            <td><div class="radio">
+                     <label><input type="radio" id={{ i.Book_id }} name="optradio" value="{{i.Book_id}}">{{ i.Book_id }}</label>
+                 </div>
+            </td>
+
+            <td>{{i.Book_name}}</td>
+            <td>{{i.Publisher}}</td>
+            <td>{{i.Author}}</td>
+            <td>{{i.Book_type}}</td>
+            <td>{{i.Price_points}}</td>
+        </tr>
+
+    {% endfor %}
+</table>
+
+    <input type="submit" value="Submit" class="button">
+</form>
+
+</body>
+</html>

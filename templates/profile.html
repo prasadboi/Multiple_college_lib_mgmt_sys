@@ -1,0 +1,175 @@
+{% load widget_tweaks %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .button1{
+             margin-top: 0px;
+            margin-left: 10px;
+            background-color: transparent;
+            font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+            color: darkturquoise;
+            transition-duration: 0.4s;
+            border: 2px solid darkturquoise;
+        border-radius: 12px;
+        padding: 14px 300px;
+        }
+        .button2{
+            position: absolute;
+            top: 8px;
+            left: 800px;
+
+            background-color: darkturquoise;
+            font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+            color: black;
+            transition-duration: 0.4s;
+            border: 2px solid darkturquoise;
+        border-radius: 12px;
+        padding: 14px 300px;
+        }
+        .button2:hover{
+            background-color: transparent;
+            color: darkturquoise;
+        }
+        #body{
+            background-size: 100%;
+        }
+    .username{
+        position: absolute;
+        top :60px;
+        left: 30px;
+        font-family: "Courier New";
+        font-size: 3em;
+        color: darkturquoise;
+        transition: transform 500ms ease-in-out;
+            will-change: transform;
+    }
+        .username:hover{
+              transform: scale(1.5);
+             background-color: transparent;
+        }
+        .name{
+        position: absolute;
+        top :120px;
+        left: 30px;
+        font-family: "Courier New";
+        font-size: 3em;
+        color: darkturquoise;
+    }
+    .gender{
+        position: absolute;
+        top :180px;
+        left: 30px;
+        font-family: "Courier New";
+        font-size: 3em;
+        color: darkturquoise;
+    }
+    .age{
+         position: absolute;
+        top :240px;
+        left: 30px;
+        font-family: "Courier New";
+        font-size: 3em;
+        color: darkturquoise;
+    }
+    .membership{
+        position: absolute;
+        top :300px;
+        left: 30px;
+        font-family: "Courier New";
+        font-size: 3em;
+        color: darkturquoise;
+    }
+    .wallet{
+        position: absolute;
+        top :360px;
+        left: 30px;
+        font-family: "Courier New";
+        font-size: 3em;
+        color: darkturquoise;
+    }
+    .college{
+         position: absolute;
+        top :420px;
+        left: 30px;
+        font-family: "Courier New";
+        font-size: 3em;
+        color: darkturquoise;
+    }
+    .branch{
+        position: absolute;
+        top :480px;
+        left: 30px;
+        font-family: "Courier New";
+        font-size: 3em;
+        color: darkturquoise;
+    }
+        .phone{
+        position: absolute;
+        top :540px;
+        left: 30px;
+        font-family: "Courier New";
+        font-size: 3em;
+        color: darkturquoise;
+    }
+    .email{
+        position: absolute;
+        top :600px;
+        left: 30px;
+        font-family: "Courier New";
+        font-size: 3em;
+        color: darkturquoise;
+    }
+    </style>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body id="body" style="background-image: url('{% static "images/F.jpg"%}')">
+<button class="button1">YOUR PROFILE</button>
+<form action="/accounts/edit">
+<button class="button2">EDIT YOUR PROFILE</button>
+</form>
+    <div class="username">
+    <p>USERNAME: {{ user.username }}</p>
+</div>
+<div class="name">
+    <p>NAME: {{student.first_name}} {{ student.last_name }}</p>
+</div>
+<div class="gender">
+   {% if student.gender == 'M' %}
+        <p>GENDER: Male</p>
+   {% else %}
+        <p>GENDER: Female</p>
+   {% endif %}
+</div>
+<div class="age">
+    <p>AGE: {{ student.age }}</p>
+</div>
+<div class="membership">
+    {% if student.membership == 'G' %}
+        <p>MEMBERSHIP: Gold</p>
+    {% elif student.membership == 'S' %}
+        <p>MEMBERSHIP: Silver</p>
+    {% else %}
+    <p>MEMBERSHIP: Bronze</p>
+    {% endif %}
+</div>
+<div class="wallet">
+    <p>WALLET POINTS: {{ student.wallet_points }}</p>
+</div>
+<div class="college">
+    <p>COLLEGE: {{ student.College.College_name }}</p>
+</div>
+<div class="branch">
+    <p>BRANCH: {{ student.branch }}</p>
+</div>
+<div class="phone">
+    <p>PHONE NUMBER: {{ student.phone_no }}</p>
+</div>
+<div class="email">
+    <p>EMAIL: {{ student.email }}</p>
+</div>
+</body>
+</html>

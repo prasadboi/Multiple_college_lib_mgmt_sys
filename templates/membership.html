@@ -1,0 +1,113 @@
+{% load widget_tweaks %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+    p1{
+        margin-top: 20px;
+
+    }
+    .button {
+
+            alignment: center;
+            margin-top: 50px;
+            font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+            color: mintcream;
+            transition-duration: 0.4s;
+            background-color: black;
+            border: 2px solid black;
+        border-radius: 12px;
+        padding: 14px 40px;
+        }
+
+    .button:hover {
+    background-color: transparent; /* Green */
+     color: black;
+    }
+    .w3-container{
+        margin-top: 30px;
+        margin-left: 20px;
+        background-color: transparent ;
+        border: 2px solid black;
+        max-width: 400px;
+        height: 600px;
+         box-shadow:0 0 20px black;
+        border-radius: 10px;
+        font-family: "Courier New";
+         text-align: center;
+            color: black;
+          font-size: 3em;
+        }
+    .w3-container2{
+        position: absolute;
+        top: 30px;
+        left: 570px;
+
+        background-color: transparent ;
+        border: 2px solid black;
+        width: 400px;
+        height: 600px;
+         box-shadow:0 0 20px black;
+        border-radius: 10px;
+        font-family: "Courier New";
+         text-align: center;
+            color: black;
+          font-size: 3em;
+    }
+    .w3-container3{
+        position: absolute;
+        top: 30px;
+        left: 1100px;
+        background-color: transparent ;
+        border: 2px solid black;
+        width: 400px;
+        height: 600px;
+         box-shadow:0 0 20px black;
+        border-radius: 10px;
+        font-family: "Courier New";
+         text-align: center;
+            color: black;
+          font-size: 3em;
+    }
+    .head{
+        margin-top: 5px;
+        font-family: "Courier New";
+        text-align: center;
+        color: black;
+        font-style: oblique;
+        font-size: 40px;
+    }
+    #body{
+        background-size: 100%;
+    }
+    </style>
+    <meta charset="UTF-8">
+    <title>Membership</title>
+</head>
+<body id="body" style="background-image: url('{% static "images/yes.jpg" %}')">
+<form action="/accounts/membership_page/" method="post">
+ {% csrf_token %}
+    <div class="w3-container">
+        <p1>GOLD</p1>
+        <p>WALLET POINTS - 1000</p>
+        <p>RETURN POLICY - 30 days</p>
+        <input type="submit" value="SELECT" name="btn" class="button">
+</div>
+<div class="w3-container2">
+     <p1>SILVER</p1>
+        <p>WALLET POINTS - 500</p>
+        <p>RETURN POLICY - 20 days</p>
+<input type="submit" value="SELECT" name="btn1" class="button">
+</div>
+<div class="w3-container3">
+   <p1>BRONZE</p1>
+        <p>WALLET POINTS - 200</p>
+        <p>RETURN POLICY - 10 days</p>
+<input type="submit" value="SELECT" name="btn2" class="button">
+</div>
+
+</form>
+</body>
+</html>

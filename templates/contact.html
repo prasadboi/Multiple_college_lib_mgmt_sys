@@ -1,0 +1,62 @@
+{% load widget_tweaks %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        #body{
+            background-size: 100%;
+        }
+        .w3-container{
+        margin-top: 100px;
+        margin-left: 20px;
+        margin-right: 20px;
+            background-color: transparent ;
+        border: 2px solid black;
+        border-radius: 20px;
+        box-shadow: 0 0 20px lightslategray;
+        height: 200px;
+            transition: transform 500ms ease-in-out;
+            will-change: transform;
+    }
+       .w3-container:hover{
+           background-color: black;
+
+             transform: scale(1.5);
+       }
+       .header{
+           margin-top: 10px;
+           color: black;
+           font-size:4em;
+           text-align: center;
+       }
+        .text{
+        margin-top: 70px;
+        text-align: center;
+        font-family: "Courier New";
+        color: black;
+        font-size: 3em;
+    }
+    .text:hover{
+        color: white;
+    }
+    </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body id="body" style="background-image: url('{% static "images/J.jpg"%}')">
+<div class="header">
+    <p>CONTACT DETAILS</p>
+</div>
+<div class="w3-container">
+    <div class="text">
+        <p>EMAIL: jainakshatanil@gmail.com</p>
+    </div>
+</div>
+<div class="w3-container">
+    <div class="text">
+        <p>MOBILE : 9168875988</p>
+    </div>
+</div>
+</body>
+</html>

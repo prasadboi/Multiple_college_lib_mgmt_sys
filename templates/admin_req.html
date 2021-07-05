@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% csrf_token %}
+    <table class="content_table">
+    <thead>
+    <tr>
+
+        <th>BOOK ID</th>
+        <th>BOOK NAME</th>
+        <th>PUBLISHER</th>
+        <th>AUTHOR</th>
+        <th>BOOK TYPE</th>
+        <th>PRICE POINTS</th>
+    </tr>
+    </thead>
+    {% for i in books %}
+
+            <td>{{ i.Book_id }}</td>
+            <td>{{i.Book_name}}</td>
+            <td>{{i.Publisher}}</td>
+            <td>{{i.Author}}</td>
+            <td>{{i.Book_type}}</td>
+            <td>{{i.Price_points}}</td>
+        </tr>
+
+    {% endfor %}
+</table>
+</body>
+</html>

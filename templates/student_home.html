@@ -1,0 +1,247 @@
+{% load widget_tweaks %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    .header_text{
+
+            text-align: center;
+            color: black;
+            font-family:"Courier New";
+            font-style: italic;
+        }
+</style>
+<head>
+    <style>
+        .issue{
+             position: absolute;
+            top: 79px;
+            left: 700px;
+            background-color: transparent;
+            font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+            color: black;
+            transition-duration: 0.4s;
+            border: 2px solid black;
+        border-radius: 12px;
+        padding: 14px 40px;
+        }
+        .issue:hover{
+            background-color: black;
+            color: white;
+        }
+        .logo{
+            position: absolute;
+            top: 20px;
+            left: 10px;
+            size: 20px;
+
+        }
+
+        .membership{
+            position: absolute;
+            top: 79px;
+            left: 430px;
+            background-color: transparent;
+            font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+            color: black;
+            transition-duration: 0.4s;
+            border: 2px solid black;
+        border-radius: 12px;
+        padding: 14px 40px;
+        }
+        .membership:hover{
+            background-color: black;
+            color: white;
+        }
+        .logout{
+            position: absolute;
+            top: 79px;
+            right: 30px;
+            background-color: transparent;
+            font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+            color: black;
+            transition-duration: 0.4s;
+            border: 2px solid black;
+        border-radius: 12px;
+        padding: 14px 40px;
+        }
+        .logout:hover{
+            background-color: black;
+            color: white;
+        }
+        .del{
+            position: absolute;
+            top: 79px;
+            left: 920px;
+            background-color: transparent;
+            font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+            color: black;
+            transition-duration: 0.4s;
+            border: 2px solid black;
+        border-radius: 12px;
+        padding: 14px 40px;
+        }
+        .del:hover{
+            background-color: black;
+            color: white;
+        }
+        .req{
+             position: absolute;
+             top: 79px;
+            left: 1160px;
+            background-color: transparent;
+            font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+            color: black;
+            transition-duration: 0.4s;
+            border: 2px solid black;
+        border-radius: 12px;
+        padding: 14px 40px;
+        }
+        .req:hover{
+             background-color: black;
+            color: white;
+        }
+        .las{
+             position: absolute;
+            top: 79px;
+            left: 200px;
+            background-color: transparent;
+            font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+            color: black;
+            transition-duration: 0.4s;
+            border: 2px solid black;
+        border-radius: 12px;
+        padding: 14px 40px;
+        }
+        .las:hover{
+            background-color: black;
+            color: white;
+        }
+        .content_table{
+            position: absolute;
+            top: 160px;
+            left: 300px;
+            border-collapse: collapse;
+            border-radius: 5px 5px 0 0;
+
+
+            font-size: 0.9em;
+            min-width: 400px;
+            overflow: hidden;
+            box-shadow:0 0 20px lightslategray;
+        }
+        .content_table thead tr{
+            background-color: black;
+            color: white;
+            text-align: left;
+            font-family: "Courier New";
+            
+        }
+        .content_table td{
+             transition: transform 500ms ease-in-out;
+            will-change: transform;
+
+        }
+        .content_table td:hover{
+             transform: scale(1.5);
+             background-color: transparent;
+        }
+        .content_table th,
+            .content_table td{
+            padding: 12px 15px;
+        }
+
+        .content_table tbody tr:nth-of-type(even){
+            background-color: ivory;
+            color: black;
+        }
+
+        .content_table tbody tr:last-of-type{
+            border-bottom: 2px solid black;
+            border-radius: 20px 20px 20px 20px;
+            overflow: hidden;
+        }
+        .button{
+            margin-top: 0px;
+            margin-left: 10px;
+            background-color: transparent;
+            font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+            color: black;
+            transition-duration: 0.4s;
+            border: 2px solid black;
+        border-radius: 12px;
+        padding: 14px 40px;
+        }
+        .button:hover{
+            background-color: black;
+            color: white;
+        }
+        #body{
+            background-size: 100%;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body id="body" style="background-image: url('{% static "images/D.jpg"%}')" >
+{% for message in messages %}
+    {{ message }}
+{% endfor %}
+<div class="header_text">
+    <h1>Home</h1>
+</div>
+<form action="/accounts/profile_btn">
+<button class="button">Profile</button>
+</form>
+
+<form action="/accounts/request_book">
+<button class="las">Request a book</button>
+</form>
+<form action="/accounts/membership">
+<button class="membership">Upgrade Membership</button>
+</form>
+    <form action="/accounts/add_book">
+<button class="issue">Add a book</button>
+</form>
+    <form action="/accounts/return_book">
+<button class="del">Return a book</button>
+</form>
+<form action="/accounts/logout">
+<button class="logout">Logout</button>
+</form>
+<form action="/accounts/contact_us">
+<button class="req">Contact us</button>
+</form>
+    <table class="content_table">
+    <thead>
+    <tr>
+
+        <th>BOOK ID</th>
+        <th>BOOK NAME</th>
+        <th>PUBLISHER</th>
+        <th>AUTHOR</th>
+        <th>BOOK TYPE</th>
+        <th>PRICE POINTS</th>
+        <th>ISSUE DATE</th>
+        <th>RETURN DATE</th>
+    </tr>
+    </thead>
+
+        {% for i in books %}
+
+        <tr>
+            <td>{{i.Book_id}}</td>
+            <td>{{i.Book_name}}</td>
+            <td>{{i.Publisher}}</td>
+            <td>{{i.Author}}</td>
+            <td>{{i.Book_type}}</td>
+            <td>{{i.Price_points}}</td>
+            <td>{{i.issue_date}}</td>
+            <td>{{i.return_date}}</td>
+        </tr>
+
+    {% endfor %}
+</table>
+</body>
+</html>

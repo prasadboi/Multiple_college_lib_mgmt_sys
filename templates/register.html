@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .header{
+            text-align: center;
+            font-size: 5em;
+            font-family: "Courier New";
+            color: black;
+        }
+        p{
+            margin-top: 30px;
+            text-align: center;
+
+        }
+        .w3-container{
+           position: absolute;
+            top: 10px;
+            left: 70px;
+            font-size: 5em;
+            font-family: "Courier New";
+            color: black;
+            border: 2px solid black;
+            height: 300px;
+            width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px lightslategray;
+            transition: transform 500ms ease-in-out;
+            will-change: transform;
+        }
+        .w3-container:hover{
+            background-color: black;
+            color: lightslategray;
+            transform: scale(1.1);
+        }
+        .w3-container2{
+            position: absolute;
+            top: 400px;
+            left: 550px;
+             font-size: 5em;
+            font-family: "Courier New";
+            color: black;
+            border: 2px solid black;
+            height: 300px;
+            width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px lightslategray;
+            transition: transform 500ms ease-in-out;
+            will-change: transform;
+        }
+        .w3-container2:hover{
+              background-color: black;
+            color: lightslategray;
+            transform: scale(1.1);
+        }
+        .w3-container3{
+            position: absolute;
+            top: 10px;
+            left: 1030px;
+            font-size: 5em;
+            font-family: "Courier New";
+            color: black;
+            border: 2px solid black;
+            height: 300px;
+            width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px lightslategray;
+            transition: transform 500ms ease-in-out;
+            will-change: transform;
+
+
+        }
+        .w3-container3:hover{
+             background-color: black;
+            color: lightslategray;
+            transform: scale(1.1);
+        }
+
+    </style>
+    <meta charset="UTF-8">
+
+
+    <title>START PAGE</title>
+</head>
+<body id="body" style="background-image: url('{% static "images/L.jpg"%}')">
+<div class="header">
+
+</div>
+<div class="w3-container" onclick="location.href='{% url 'login' %}'">
+    <p>STUDENT</p>
+    <p>LOGIN</p>
+</div>
+
+
+<div class="w3-container2" onclick="location.href='{% url 'login' %}'">
+    <p>ADMIN</p>
+    <p>LOGIN</p>
+</div>
+<div class="w3-container3" onclick="location.href='{% url 'customer_register' %}'">
+    <p>STUDENT</p>
+    <p>SIGN UP</p>
+</div>
+</body>
+</html>
