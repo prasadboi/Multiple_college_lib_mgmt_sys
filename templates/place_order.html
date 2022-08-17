@@ -1,0 +1,44 @@
+{% load widget_tweaks%}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>MAKE ORDER</title>
+    <form method="post" action= "/library/place_order">
+        {%csrf_token%}
+        <table class="content_table">
+            <thead>
+                <tr>
+                    <th>Book_ID</th>
+                    <th>Book_name</th>
+                    <th>Seller_id</th>
+                    <th>Seller_name</th>
+                    <th>Shipping_cost</th>
+                    <th>Rating</th>
+                </tr>
+            </thead>
+
+            {%for i in available_sellers%}
+                <tr>
+                    <td><div class="radio">
+                        <label><input type="radio" id={{i.seller.Seller_id}} name = "optradio" value={{i.seller.Seller_name}}>{{i.seller.Seller_id}}</label> 
+                        </div>
+                    </td>
+                    <td>{{i.book.Book_id}}</td>
+                    <td>{{i.book.Book_name}}</td>
+                    <td>{{i.seller.Seller_id}}</td>
+                    <td>{{i.seller.Seller_name}}</td>
+                    <td>{{i.seller.Shipping_cost}}</td>
+                    <td>{{i.seller.Rating}}</td>
+                </tr>
+            {%endfor%}
+        </table>
+
+        <input type="submit" value="Submit">
+        </form>
+    </head>
+    <body>
+    </body>
+</html>

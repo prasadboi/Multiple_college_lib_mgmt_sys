@@ -15,9 +15,9 @@
 <head>
     <style>
         .issue{
-             position: absolute;
-            top: 79px;
-            left: 700px;
+             position: relative;
+
+            left: 180px;
             background-color: transparent;
             font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
             color: black;
@@ -39,9 +39,9 @@
         }
 
         .membership{
-            position: absolute;
-            top: 79px;
-            left: 430px;
+            position: relative;
+
+            left: 120px;
             background-color: transparent;
             font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
             color: black;
@@ -71,9 +71,9 @@
             color: white;
         }
         .del{
-            position: absolute;
-            top: 79px;
-            left: 920px;
+            position: relative;
+
+            left: 240px;
             background-color: transparent;
             font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
             color: black;
@@ -89,7 +89,7 @@
         .req{
              position: absolute;
              top: 79px;
-            left: 1160px;
+            left: 1170px;
             background-color: transparent;
             font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
             color: black;
@@ -103,9 +103,9 @@
             color: white;
         }
         .las{
-             position: absolute;
-            top: 79px;
-            left: 200px;
+             position: relative;
+
+            left: 60px;
             background-color: transparent;
             font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
             color: black;
@@ -119,13 +119,11 @@
             color: white;
         }
         .content_table{
-            position: absolute;
-            top: 160px;
-            left: 300px;
             border-collapse: collapse;
             border-radius: 5px 5px 0 0;
-
-
+            margin: 25px 0;
+            margin-top: 75px;
+            margin-left: 20px;
             font-size: 0.9em;
             min-width: 400px;
             overflow: hidden;
@@ -185,26 +183,16 @@
     <title>Home</title>
 </head>
 <body id="body" style="background-image: url('{% static "images/D.jpg"%}')" >
-{% for message in messages %}
-    {{ message }}
-{% endfor %}
 <div class="header_text">
     <h1>Home</h1>
 </div>
 <form action="/accounts/profile_btn">
 <button class="button">Profile</button>
 </form>
-
-<form action="/accounts/request_book">
-<button class="las">Request a book</button>
-</form>
-<form action="/accounts/membership">
+    <button class="las">Request a book</button>
 <button class="membership">Upgrade Membership</button>
-</form>
-    <form action="/accounts/add_book">
 <button class="issue">Add a book</button>
-</form>
-    <form action="/accounts/return_book">
+<form action="/accounts/return_book">
 <button class="del">Return a book</button>
 </form>
 <form action="/accounts/logout">
@@ -223,13 +211,9 @@
         <th>AUTHOR</th>
         <th>BOOK TYPE</th>
         <th>PRICE POINTS</th>
-        <th>ISSUE DATE</th>
-        <th>RETURN DATE</th>
     </tr>
     </thead>
-
-        {% for i in books %}
-
+    {% for i in books %}
         <tr>
             <td>{{i.Book_id}}</td>
             <td>{{i.Book_name}}</td>
@@ -237,8 +221,6 @@
             <td>{{i.Author}}</td>
             <td>{{i.Book_type}}</td>
             <td>{{i.Price_points}}</td>
-            <td>{{i.issue_date}}</td>
-            <td>{{i.return_date}}</td>
         </tr>
 
     {% endfor %}

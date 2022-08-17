@@ -1,10 +1,11 @@
 from datetime import date
+from django.conf import settings
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils import timezone
-
 from library.models import College,Books
+
 class User(AbstractUser):
     is_admin = models.BooleanField(default=False)
     is_student = models.BooleanField(default=False)
@@ -37,18 +38,22 @@ class issue(models.Model):
     book = models.ForeignKey(Books,on_delete=models.CASCADE,null=True)
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['user','book'], name='book_student_cons')
+            models.UniqueConstraint(fields=['user','book'],name='book_student_cons')
         ]
     Issue_date = models.DateField(default=timezone.now)
     # Create your models here.
-    Return_date = models.DateField(null=True)
+    Return_date = models.DateField(null=True) 
+    
 class Request(models.Model):
     User = models.ForeignKey(User,on_delete=models.CASCADE)
     Book = models.ForeignKey(Books,on_delete=models.CASCADE)
+
+
+# ADMIN-------------------------------------------------------------------------------------------------------------------------------------------
 class Admin(models.Model):
     # admin class extends user class
     user = models.OneToOneField(User,on_delete=models.CASCADE)
-    # admin id - assigned by the system, thereby unique
+    # admin id - assigned by the system, thereby unique  
     admin_id = models.CharField(primary_key=True, max_length=255)
 
     # name

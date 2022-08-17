@@ -4,7 +4,7 @@ from accounts.views import (
      student_regview,
 )
 urlpatterns=[
-
+     path('register/',views.register, name='register'),
      #path('customer_register/',views.customer_register.as_view(), name='customer_register'),
      path('customer_register/',student_regview,name='customer_register'),
      path('login/',views.login_request, name='login'),
@@ -23,6 +23,5 @@ urlpatterns=[
      path('membership',views.membership,name='membership'),
      path('membership_page/',views.membership_page,name='membership_page'),
      path('request_book',views.request_book,name='request_book'),
-     path('request_book_page/',views.request_book_page,name='request_book_page'),
-     path('admin_req/',views.admin_req,name='admin_req')
+     path('request_book_page/',views.request_book_page,name='request_book_page')
      ]

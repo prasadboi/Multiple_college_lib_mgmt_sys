@@ -10,7 +10,7 @@ from django.forms import ValidationError
 from library.models import College, Books, Inventory
 from .form import Student_Form, update_profile
 from django.contrib.auth.forms import AuthenticationForm
-from accounts.models import User, Student, issue, Request, Admin
+from accounts.models import User, Student, issue, Request
 from django.forms import forms
 
 def register(request):
@@ -69,11 +69,8 @@ def student_homeView(request):
 
     l = books1.values_list('book_id',flat=True)
     books = Books.objects.filter(Book_id__in=l)
-    for i in books:
-        i.issue_date = issue.objects.get(user=user,book=i).Issue_date
-        i.return_date = issue.objects.get(user=user,book=i).Return_date
     context = {
-        'books': books,
+        'books': books
 
     }
     return render(request,'../templates/student_home.html',context)
@@ -99,10 +96,8 @@ def profile(request):
         'student': student
     }
     return render(request,'../templates/profile.html',context)
-@login_required
 def edit(request):
     return redirect('/accounts/edit_profile')
-@login_required
 def edit_view(request):
     if(request.POST):
         form = update_profile(request.POST)
@@ -138,10 +133,8 @@ def edit_view(request):
 
 
     return render(request,'../templates/edit_view.html',{'form':update_profile()})
-@login_required
 def return_book(request):
     return redirect('/accounts/return_book_page')
-@login_required
 def return_book_page(request):
     user = request.user
     books1 = issue.objects.filter(user=user)
@@ -162,11 +155,9 @@ def return_book_page(request):
             issue.objects.get(user=user,book=book).delete()
         return redirect('/accounts/student_home')
     return render(request,'../templates/return_book.html',context)
-@login_required
 def add_book(request):
     return redirect('/accou'
                     'nts/add_book_page');
-@login_required
 def add_book_page(request):
     user = request.user
     #user1 = User.objects.get(username=user.username)
@@ -184,46 +175,34 @@ def add_book_page(request):
     }
     if(request.POST):
         book_id = request.POST.get('optradio')
-        if(book_id!=None):
-            book = Books.objects.get(Book_id=book_id)
-            count = issue.objects.filter(user=user,Issue_date=timezone.now().date()).count()
+        book = Books.objects.get(Book_id=book_id)
+        count = issue.objects.filter(user=user,Issue_date=timezone.now().date()).count()
+        if(count == 1):
+            messages.error(request,"Already did 1 issue today")
+            return redirect('/accoounts/student_home')
+        if(int(book.Price_points) > student.wallet_points ):
+            messages.error(request,"Not enough wallet points please buy new membership for more wallet points")
+            return redirect('/accounts/student_home')
+        else:
+            issue_date = timezone.now().date()
             if(student.membership == 'G'):
-                if(count == 5):
-                    messages.error(request,"Already did 5 issues today")
-                    return redirect('/accoounts/student_home')
-            if(student.membership == 'S'):
-                if(count == 3):
-                    messages.error(request, "Already did 3 issues today")
-                    return redirect('/accoounts/student_home')
-            if(student.membership == 'B'):
-                if (count == 1):
-                    messages.error(request, "Already did 1 issue today")
-                    return redirect('/accoounts/student_home')
-            if(int(book.Price_points) > student.wallet_points ):
-                messages.error(request,"Not enough wallet points please buy new membership for more wallet points")
-                return redirect('/accounts/student_home')
+                return_date = issue_date + timedelta(days=30)
+            elif(student.membership == 'S'):
+                return_date = issue_date + timedelta(days=20)
             else:
-                issue_date = timezone.now().date()
-                if(student.membership == 'G'):
-                    return_date = issue_date + timedelta(days=30)
-                elif(student.membership == 'S'):
-                    return_date = issue_date + timedelta(days=20)
-                else:
-                    return_date = issue_date + timedelta(days=10)
+                return_date = issue_date + timedelta(days=10)
 
-                i = issue(user=user,book=book,Issue_date=issue_date,Return_date=return_date)
-                i.save()
-                intv = Inventory.objects.get(College=college,Books_id=book_id)
-                intv.Book_count = intv.Book_count - 1
-                intv.save()
-                student.wallet_points = student.wallet_points - int(book.Price_points)
-                student.save()
-        return redirect('/accounts/student_home')
+            i = issue(user=user,book=book,Issue_date=issue_date,Return_date=return_date)
+            i.save()
+            intv = Inventory.objects.get(College=college,Books_id=book_id)
+            intv.Book_count = intv.Book_count - 1
+            intv.save()
+            student.wallet_points = student.wallet_points - int(book.Price_points)
+            student.save()
+            return redirect('/accounts/student_home')
     return render(request,'../templates/add_book.html',context)
-@login_required
 def membership(request):
     return redirect('/accounts/membership_page')
-@login_required
 def membership_page(request):
     if(request.POST):
         if(request.POST.get('btn')):
@@ -250,10 +229,8 @@ def membership_page(request):
         else:
             return redirect('/accounts/student_home')
     return render(request,'../templates/membership.html')
-@login_required
 def request_book(request):
     return redirect('/accounts/request_book_page')
-@login_required
 def request_book_page(request):
     user = request.user
     student = Student.objects.get(user=user)
@@ -275,19 +252,3 @@ def request_book_page(request):
             i.save()
         return redirect('/accounts/student_home')
     return render(request,'../templates/request_book.html',context)
-@login_required
-def admin_req(request):
-    user = request.user
-    admin = Admin.objects.filter(user=user).values_list('college',flat=True)
-    college = admin[0]
-    users = Student.objects.filter(College=college).values_list('user',flat=True)
-    books = Request.objects.filter(User__in=users).values_list('Book',flat=True)
-    context = {
-        'books':books
-    }
-
-
-
-
-
-    return render(request,'../templates/admin_req.html',context)
